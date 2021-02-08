@@ -1,19 +1,31 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./SearchBar.css";
 
 function SearchBar(props) {
   const handleSubmitClick = (e) => {
+    e.preventDefault();
     const inputField = document.getElementById("name-input");
     const beginner = document.getElementById("beginner");
     const intermediate = document.getElementById("intermediate");
     const advanced = document.getElementById("advanced");
+    const resultsPosition = document.getElementById("results-container")
+      .offsetTop;
     if (props.searchBy === "name" && inputField.value === "") {
       return alert("please enter an exercise name");
-    } else if (!beginner.checked && !intermediate.checked && !advanced.checked){
+    } else if (
+      !beginner.checked &&
+      !intermediate.checked &&
+      !advanced.checked
+    ) {
       return alert("please enter one or more experience levels");
     } else {
       props.onSearch();
-      if (props.searchBy === "name") {inputField.value = "";}
+      window.scrollTo({
+        top: resultsPosition,
+        left: 0,
+        behavior: "smooth",
+      });
       beginner.checked = false;
       intermediate.checked = false;
       advanced.checked = false;
@@ -37,7 +49,11 @@ function SearchBar(props) {
   if (props.searchBy === "name") {
     return (
       <section className="search-bar">
-        <div id="search-by-name">
+        <form
+          id="search-by-name"
+          className="search"
+          onSubmit={handleSubmitClick}
+        >
           <h2>Search By Name</h2>
           <input
             type="text"
@@ -46,7 +62,7 @@ function SearchBar(props) {
             placeholder="enter an exercise name"
             onChange={updateSearchTerm}
           />
-          <p id="experience-level">Experience Level</p>
+          <p className="option">Select your experience level(s)</p>
           <input
             type="checkbox"
             className="checkbox"
@@ -76,23 +92,31 @@ function SearchBar(props) {
           <label htmlFor="advanced">Advanced</label>
           <br />
 
-          <button className="submit-search" onClick={handleSubmitClick}>
+          <button className="submit-search" /*onClick={handleSubmitClick}*/>
             Search!
           </button>
 
-          <button
-            className="switch-search"
+          <p
+            className="option switch-search"
             onClick={() => props.onChangeSearchBy("body part")}
           >
             Or Search by Body Part
-          </button>
-        </div>
+          </p>
+        </form>
+        <p>Want to add an exercise to the database?</p>
+        <Link to="/edit">
+          <button>Click here to add!</button>
+        </Link>
       </section>
     );
   } else {
     return (
       <section className="search-bar">
-        <div id="search-by-body-part">
+        <form
+          id="search-by-body-part"
+          className="search"
+          onSubmit={handleSubmitClick}
+        >
           <h2>Search By Body Part</h2>
           <input
             type="checkbox"
@@ -187,17 +211,21 @@ function SearchBar(props) {
           <label htmlFor="advanced">Advanced</label>
           <br />
 
-          <button className="submit-search" onClick={handleSubmitClick}>
+          <button className="submit-search" /*onClick={handleSubmitClick}*/>
             Search!
           </button>
 
-          <button
-            className="switch-search"
+          <p
+            className="option switch-search"
             onClick={() => props.onChangeSearchBy("name")}
           >
             Or Search by Exercise Name
-          </button>
-        </div>
+          </p>
+        </form>
+        <p>Want to add an exercise to the database?</p>
+        <Link to="/edit">
+          <button>Click here to add!</button>
+        </Link>
       </section>
     );
   }

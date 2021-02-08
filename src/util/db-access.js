@@ -5,8 +5,8 @@ const Db = {
     try {
       const response = await fetch(`${baseUrl}${name}?level=${level}`);
       if (!response.ok) {
-        const message = `${response.status} That exercise isn't in the database`;
-        throw new Error(message);
+        const message = `Sorry! Looks like that exercise isn't in the database`;
+        alert(message);
       } else if (response.ok) {
         const jsonResponse = await response.json();
         if (jsonResponse) {
@@ -14,7 +14,7 @@ const Db = {
         }
       }
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   },
 
@@ -36,9 +36,7 @@ const Db = {
 
   async getAllExercises() {
     try {
-      const response = await fetch(
-        `${baseUrl}`
-      );
+      const response = await fetch(`${baseUrl}`);
       const jsonResponse = await response.json();
       const exercises = await jsonResponse.exercises.map((exercise) => ({
         id: exercise.id,
@@ -48,7 +46,7 @@ const Db = {
         level: exercise.level,
         video: exercise.video_link,
       }));
-      return exercises; 
+      return exercises;
     } catch (error) {
       alert(error);
     }

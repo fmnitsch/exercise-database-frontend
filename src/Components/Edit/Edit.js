@@ -12,7 +12,7 @@ class Edit extends React.Component {
     level: null,
     video: "",
     id: null,
-    method: "addNew"
+    method: "addNew",
   };
 
   addMuscles = (e) => {
@@ -36,12 +36,12 @@ class Edit extends React.Component {
       this.setState({ name: e.target.value });
     } else {
       this.setState({ name: e.target.textContent });
-    } 
+    }
   };
 
   updateId = (e) => {
-    this.setState({ id: e.target.value })
-  }
+    this.setState({ id: e.target.value });
+  };
 
   updateMuscles = (e) => {
     e.target.checked ? this.addMuscles(e) : this.removeMuscles(e);
@@ -60,8 +60,8 @@ class Edit extends React.Component {
   };
 
   changeMethod = () => {
-    const toggle = this.state.method === "addNew" ? "UpdateCurrent" : "addNew"
-    this.setState({ method: toggle});
+    const toggle = this.state.method === "addNew" ? "UpdateCurrent" : "addNew";
+    this.setState({ method: toggle });
   };
 
   submitNew = async () => {
@@ -120,28 +120,30 @@ class Edit extends React.Component {
   render() {
     if (this.state.method === "addNew") {
       return (
-      <AddExercise
-        updateName={this.updateName}
-        updateMuscles={this.updateMuscles}
-        updateDescription={this.updateDescription}
-        updateLevel={this.updateLevel}
-        updateVideo={this.updateVideo}
-        changeMethod={this.changeMethod}
-        submit={this.submitNew}
-       />
-      )
+        <AddExercise
+          updateName={this.updateName}
+          updateMuscles={this.updateMuscles}
+          updateDescription={this.updateDescription}
+          updateLevel={this.updateLevel}
+          updateVideo={this.updateVideo}
+          changeMethod={this.changeMethod}
+          submit={this.submitNew}
+        />
+      );
     } else {
-      return <UpdateExercise 
-        updateName={this.updateName}
-        updateId={this.updateId}
-        updateMuscles={this.updateMuscles}
-        updateDescription={this.updateDescription}
-        updateLevel={this.updateLevel}
-        updateVideo={this.updateVideo}
-        changeMethod={this.changeMethod}
-        submit={this.submitUpdate}/>
+      return (
+        <UpdateExercise
+          updateName={this.updateName}
+          updateId={this.updateId}
+          updateMuscles={this.updateMuscles}
+          updateDescription={this.updateDescription}
+          updateLevel={this.updateLevel}
+          updateVideo={this.updateVideo}
+          changeMethod={this.changeMethod}
+          submit={this.submitUpdate}
+        />
+      );
     }
-    
   }
 }
 

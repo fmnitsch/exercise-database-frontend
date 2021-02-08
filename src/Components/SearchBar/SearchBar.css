@@ -1,0 +1,21 @@
+.search-bar {
+  min-height: 400px;
+  background: url("../../Resources/man-tying-shoe.jpg");
+  background-size: cover;
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  color: white;
+}
+
+label {
+  margin-right: 20px;
+}
+
+.switch-search {
+  color: rgb(255, 240, 90);
+  text-decoration: none;
+  display: block;
+  margin-top: 5px;
+  font-size: 0.8em;
+  cursor: pointer;
+}

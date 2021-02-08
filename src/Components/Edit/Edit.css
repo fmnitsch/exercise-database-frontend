@@ -1,0 +1,12 @@
+.edit {
+  background: url("../../Resources/man-tying-shoe.jpg");
+  background-size: cover;
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  color: white;
+}
+
+a {
+  color: rgb(255, 240, 90);
+  text-decoration: none;
+}

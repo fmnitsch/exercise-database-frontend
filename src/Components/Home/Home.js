@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./Home.css";
 import Title from "../Title/Title";
 import SearchBar from "../SearchBar/SearchBar";
@@ -71,6 +70,7 @@ class Home extends React.Component {
       experienceLevels: [],
       exercises: foundExercises,
     });
+    document.querySelector(".search").reset();
   };
 
   render() {
@@ -90,11 +90,9 @@ class Home extends React.Component {
           onAddExperienceLevel={this.addExperienceLevel}
           onRemoveExperienceLevel={this.removeExperienceLevel}
         />
-        <p>Want to add an exercise to the database?</p>
-        <Link to="/edit">
-          <button>Click here to add!</button>
-        </Link>
-        <Results exercises={this.state.exercises} />
+        <div id="results-container">
+          <Results exercises={this.state.exercises} />
+        </div>
       </div>
     );
   }

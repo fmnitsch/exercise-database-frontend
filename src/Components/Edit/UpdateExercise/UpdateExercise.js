@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./UpdateExercise.css";
 import Db from "../../../util/db-access";
 
@@ -15,17 +16,16 @@ class UpdateExercise extends React.Component {
     console.log(e.target);
     this.props.updateName(e);
     this.props.updateId(e);
-  }
+  };
 
   getAllExercises = async () => {
     const exercises = await Db.getAllExercises();
     this.setState({ exerciseList: exercises });
   };
 
-
   render() {
     return (
-      <div id="edit">
+      <div className="edit">
         <h1>Add or update exercises</h1>
         <h2>Update Exercise</h2>
         <button onClick={this.props.changeMethod}>Or add a new one</button>
@@ -143,6 +143,9 @@ class UpdateExercise extends React.Component {
         <label htmlFor="advanced">Advanced</label>
         <br />
         <button onClick={this.props.submit}>Update Exercise!</button>
+        <Link to="/">
+          <p>Back to search</p>
+        </Link>
       </div>
     );
   }
